@@ -10,7 +10,7 @@ Execute the following command to start the Cypress test execution:
          
 Then, choose the *search_google.js* file:
 
-![Alt text](resources/cypress-env.png?raw=true )     
+![Alt text](resources/cypress_env.png?raw=true )     
 
 Click on it and the test execution will start.    
           
