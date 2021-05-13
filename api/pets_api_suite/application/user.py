@@ -2,8 +2,6 @@ import json
 from requests_helper import *
 from pets_helper import *
 
-USER_PATH = "user"
-
 user_body = {
   'id': 0,
   'firstName': "test_api_fname",
@@ -13,15 +11,15 @@ user_body = {
   'userStatus': 0
 }
 
-def create_user(username, password):
+def create_user(pets_url, user_path, username, password):
     user_body['username'] = username
     user_body['password'] = password
     # Create a new user
-    post_url = "{}/{}".format(PETS_URL, USER_PATH)
+    post_url = "{}/{}".format(pets_url, user_path)
     http_code, response_text = execute_post(post_url, user_body)
 
     # Retrieve the user details
-    get_url = "{}/{}/{}".format(PETS_URL, USER_PATH, username)
+    get_url = "{}/{}/{}".format(pets_url, user_path, username)
     http_code, response_text = execute_get(get_url)
     print(response_text)
 

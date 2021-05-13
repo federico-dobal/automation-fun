@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import pytest
 from pets_helper import *
 

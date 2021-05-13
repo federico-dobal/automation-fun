@@ -1,12 +1,11 @@
+#!/usr/bin/python
+
 from requests_helper import *
 from pets_helper import *
-# TODO: receive parameters from properties file
-PET_BY_STATE_PATH = 'pet/findByStatus?status=available&status=pending&status=sold'
-PETS_URL = "https://petstore.swagger.io/v2"
 
 
-def get_pets_by_id():
-    get_url = "{}/{}".format(PETS_URL, PET_BY_STATE_PATH)
+def get_pets_by_id(pets_url, pet_by_state_path):
+    get_url = "{}/{}".format(pets_url, pet_by_state_path)
     http_code, response_text = execute_get(get_url)
 
     if http_code != 200:

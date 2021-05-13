@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import requests
 import json
 
@@ -21,6 +23,7 @@ def execute_get(url):
             url=url)
     # Ensure it has been created successfully
     if response.status_code != 200:
+        print(url)
         raise Exception('Error executing GET')
 
     return (response.status_code, json.loads(response.text))

@@ -1,6 +1,9 @@
+#!/usr/bin/python
+
 import argparse
 from pets_helper import *
 from user import *
+from config import *
 
 parser = argparse.ArgumentParser()
 subparsers = parser.add_subparsers(dest='subparser')
@@ -18,22 +21,28 @@ parser_count_name = subparsers.add_parser('count_name')
 kwargs = vars(parser.parse_args())
 
 try:
+    config = ConfigData()
     subcommand = kwargs.pop('subparser')
 
     if subcommand == 'user':
         print('Execute user')
-        create_user(kwargs.get('uname'), kwargs.get('upassword'))
+        create_user(config.get_api_url(),
+                    config.get_api_user_path(),
+                    kwargs.get('uname'), kwargs.get('upassword'))
 
     if subcommand == 'pets_details':
         print('Execute pets_details')
-        pets_by_id = get_pets_by_id()
+        pets_by_id = get_pets_by_id(config.get_api_url(),
+                                    config.get_api_pet_by_state_path())
 
         for pet in pets_by_id:
             print(pet)
 
     if subcommand == 'count_name':
         print('Execute count_name')
-        pets_helper = PetsHelper(get_pets_by_id())
+        pets_by_id = get_pets_by_id(config.get_api_url(),
+                                    config.get_api_pet_by_state_path())
+        pets_helper = PetsHelper(pets_by_id)
         number_pets_by_name = pets_helper.count_pets_by_name()
         print(number_pets_by_name)
 
